@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>pagina de produtos</title>
+    <link rel="stylesheet" href="/stylesheets/products.css">
+  </head>
+  <body>
+    <%- include('./partials/header') %>
+    <main>
+      <h2>Listagem de Produtos</h2>
+
+      <% products.forEach(function(product){ %>
+        <%= product.name %>
+      <%})%>
+    </main>
+  </body>
+</html>

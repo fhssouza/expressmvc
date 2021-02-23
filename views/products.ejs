@@ -2,35 +2,40 @@
 <html>
   <head>
     <title>pagina de produtos</title>
+    <link rel="stylesheet" href="/stylesheets/products.css">
   </head>
   <body>
-    <h1>
-      produtos
-    </h1>
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/512px-Circle-icons-profile.svg.png" 
-      height="200px"
-      width="20%"
-      alt="Magalu em frente a loja da magazine luiza" 
-    />
+    <%- include('./partials/header') %>
+    <h1><%= name %></h1>
+    <main>
+      <h2>Cadastro de Produtos</h2>
 
-    <p>Paragrafo</p>
-    <p>
-      Meu nome é: <strong>Fábio Souza</strong>
-      <br />
-      Idade: <strong>41</strong>
-      <br />
-      Estado Civil: <strong>Solteiro</strong>
-    </p>
-    <h3>Qualidades</h3>
-    <ul>
-      <li>Jogo bem video game</li>
-      <li>Sou programador</li>
-    </ul>
-    <ol>
-      <li>Sei cozinhar</li>
-      <li>Sei jogar bola</li>
-    </ol>
-    <a href="/about">Acessar Sobre</a>
+      <form action="" method="POST">
+        <div>
+          <label for="name">Nome do Produto: </label>
+          <input name="name" id="name" type="text">
+        </div>
+        <div>
+          <label for="price">Preço do Produto: </label>
+          <input name="price" id="price" type="number">
+        </div>
+        <div>
+          <div>
+            <label>Tipo de Produtos</label>
+          </div>
+
+            <% types.forEach(function(type){%>
+            <input type="radio" name="type" id="<%= type.id %>" value="<%= type.id %>">
+            <label for="<%= type.id%>"> <%= type.label%> </label>
+            <%})%>
+            
+        
+          </div>
+        <div>
+          <input type="submit" value="Cadastro de Produtos">
+          <input type="reset" value="Cancelar">
+        </div>
+      </form>
+    </main>
   </body>
 </html>
