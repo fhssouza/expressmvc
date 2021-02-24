@@ -3,11 +3,13 @@ const model = require('../model/products')
 
 var router = express.Router();
 
-const products = [{
+let products = [{
+  id: 1,
   name: 'geladeira',
   price: 800,
   type: 'eletronic'
 }, {
+  id: 2,
   name: 'arroz',
   price: 30,
   type: 'food'
@@ -35,13 +37,26 @@ router.get('/', function(req, res, next) {
 //req = resposta
 
 router.post('/', function(req, res){
-  console.log(req.body)
+  const newProduct = req.body;
+  newProduct.id = parseInt(Math.random() * 10000);
+  products.push(newProduct);
   res.render('products', { name: "Página de Produtos", types: types});
 });
 
 // http://localhost:3000/products/lista
 
 router.get('/lista', function(req, res){
+  res.render('productsList', {products: products});
+});
+
+router.delete('/:id', function(req, res){
+  console.log('chamando o metodo delete');
+  console.log(req.params.id)
+
+  products = products.filter(function(products){
+    return products.id !== parseInt(req.params.id);
+  })
+
   res.render('productsList', {products: products});
 });
 
